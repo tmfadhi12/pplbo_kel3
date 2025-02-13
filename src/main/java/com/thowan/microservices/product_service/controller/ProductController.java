@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.thowan.microservices.product_service.dto.ProductRequest;
 import com.thowan.microservices.product_service.dto.ProductResponse;
+import com.thowan.microservices.product_service.model.Product;
 import com.thowan.microservices.product_service.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,13 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest) {
-        productService.createProduct(productRequest);
+    public Product createProduct(@RequestBody ProductRequest productRequest) {
+        return productService.createProduct(productRequest);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> getAllProducts() {
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 

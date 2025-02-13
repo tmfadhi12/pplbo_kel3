@@ -1,6 +1,7 @@
 package com.thowan.microservices.product_service;
 
 import java.math.BigDecimal;
+import java.util.logging.Logger;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import org.testcontainers.containers.MongoDBContainer;
 import com.thowan.microservices.product_service.dto.ProductRequest;
 
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -36,7 +38,10 @@ class ProductServiceApplicationTests {
 
     @Test
     void shouldCreateProduct() throws Exception {
+
+        RestAssured.defaultParser = Parser.JSON;
         ProductRequest productRequest = getProductRequest();
+
 
         RestAssured.given()
                 .contentType("application/json")
@@ -53,7 +58,7 @@ class ProductServiceApplicationTests {
     }
 
     private ProductRequest getProductRequest() {
-        return new ProductRequest("1" ,"iPhone 13", "iPhone 13", BigDecimal.valueOf(1200));
+        return new ProductRequest("iPhone 13", "iPhone 13", BigDecimal.valueOf(1200));
     }
 
 }

@@ -15,29 +15,52 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProductService {
 
-    private final ProductRepository productRepository;
 
-    public void createProduct(ProductRequest productRequest) {
+// public class ProductService {
+
+//     private final ProductRepository productRepository;
+
+//     public ProductResponse createProduct(ProductRequest productRequest) {
+//         log.info("Creating product {}", productRequest);
+//         Product product = Product.builder()
+//                 .name(productRequest.name())
+//                 .description(productRequest.description())
+//                 .price(productRequest.price())
+//                 .build();
+
+//         productRepository.save(product);
+//         log.info("Product successfully created");
+//         return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
+//     }
+
+//     public List<ProductResponse> getAllProducts() {
+//         List<Product> products = productRepository.findAll();
+
+//         return products.stream().map(this::mapToProductResponse).toList();
+//     }
+
+//     private ProductResponse mapToProductResponse(Product product) {
+//         return new ProductResponse(product.getId(), product.getName(),
+//                 product.getDescription(), product.getPrice());
+//     }
+// }
+
+public class ProductService{
+    private final  ProductRepository productRepository;
+
+    public Product createProduct(ProductRequest productRequest){
         Product product = Product.builder()
                 .name(productRequest.name())
                 .description(productRequest.description())
                 .price(productRequest.price())
                 .build();
-
         productRepository.save(product);
-        log.info("Product {} is saved", product.getId());
+        log.info("Product Successfully created");
+        return product;
     }
 
-    public List<ProductResponse> getAllProducts() {
-        List<Product> products = productRepository.findAll();
-
-        return products.stream().map(this::mapToProductResponse).toList();
-    }
-
-    private ProductResponse mapToProductResponse(Product product) {
-        return new ProductResponse(product.getId(), product.getName(),
-                product.getDescription(), product.getPrice());
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
     }
 }
