@@ -1,4 +1,4 @@
-package com.thowan.microservices.order_service;
+package com.thowan.microservices.order;
 
 import org.springframework.boot.SpringApplication;
 
