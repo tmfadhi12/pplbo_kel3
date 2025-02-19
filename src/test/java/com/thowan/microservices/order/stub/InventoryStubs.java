@@ -2,9 +2,7 @@ package com.thowan.microservices.order.stub;
 
 import lombok.experimental.UtilityClass;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-
-
-
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;;
 
 @UtilityClass
 public class InventoryStubs {
