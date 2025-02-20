@@ -8,7 +8,6 @@ import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 import com.thowan.microservices.client.InventoryClient;
 
-
 @Configuration
 public class RestClientConfig {
 
@@ -18,7 +17,7 @@ public class RestClientConfig {
     @Bean
     public InventoryClient inventoryClient(){
         RestClient restClient = RestClient.builder()
-            .baseUrl("inventoryServiceUrl")
+            .baseUrl(inventoryServiceUrl)
             .build();
             var restClientAdapter = RestClientAdapter.create(restClient);
             var httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build();
