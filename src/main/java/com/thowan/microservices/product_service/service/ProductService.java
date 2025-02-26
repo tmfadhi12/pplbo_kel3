@@ -49,15 +49,16 @@ import java.util.List;
 public class ProductService{
     private final  ProductRepository productRepository;
 
-    public Product createProduct(ProductRequest productRequest){
+    public ProductResponse createProduct(ProductRequest productRequest){
         Product product = Product.builder()
                 .name(productRequest.name())
                 .description(productRequest.description())
+                .skuCode(productRequest.skuCode())
                 .price(productRequest.price())
                 .build();
         productRepository.save(product);
         log.info("Product Successfully created");
-        return product;
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice());
     }
 
     public List<Product> getAllProducts(){

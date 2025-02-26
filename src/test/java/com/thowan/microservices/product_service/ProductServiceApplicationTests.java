@@ -58,7 +58,13 @@ class ProductServiceApplicationTests {
     }
 
     private ProductRequest getProductRequest() {
-        return new ProductRequest("iPhone 13", "iPhone 13", BigDecimal.valueOf(1200));
+        return new ProductRequest(
+            "test-id",
+            "iPhone 13",
+            "Latest iPhone with A15 Bionic chip",
+            "IPHONE-13-PRO",
+            new BigDecimal("1299.99")
+        );
     }
 
 }
